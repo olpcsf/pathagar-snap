@@ -1,0 +1,7 @@
+*.log
+parts/
+prime/
+*.snap
+.snapcraft
+stage/
+.vagrant

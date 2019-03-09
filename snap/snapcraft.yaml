@@ -13,11 +13,14 @@ parts:
     plugin: python
     python-version: python2
     source: https://github.com/PathagarBooks/pathagar.git
+    source-type: git
+    requirements: requirements.txt
+    build-packages:
+      - libxml2-dev
+      - libxslt-dev
 
 apps:
   pathagar:
     command: |-
-      django manage.py migrate
-      django manage.py runserver
-    plugs:
-      - postgresql10
+      python manage.py migrate
+      python manage.py runserver
