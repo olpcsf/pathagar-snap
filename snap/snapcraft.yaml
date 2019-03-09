@@ -1,0 +1,23 @@
+name: pathagar
+version: git
+summary: Pathagar Book Server
+description: >-
+  Pathagar is a digital book server used to serve content in classrooms and
+  community over a local offline network.
+
+base: core18
+confinement: devmode
+
+parts:
+  pathagar:
+    plugin: python
+    python-version: python2
+    source: https://github.com/PathagarBooks/pathagar.git
+
+apps:
+  pathagar:
+    command: |-
+      django manage.py migrate
+      django manage.py runserver
+    plugs:
+      - postgresql10
