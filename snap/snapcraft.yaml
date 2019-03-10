@@ -27,14 +27,19 @@ parts:
       mkdir $SNAPCRAFT_PART_INSTALL/app
       cp -R . $SNAPCRAFT_PART_INSTALL/app/
 
+  # This step copies any additional files not part of pathagar that we need
+  # for the snap.
+  local:
+    plugin: nil
+    source: .
+    override-build: |
+      install -m 0755 -d $SNAPCRAFT_PART_INSTALL/usr/bin
+      install -m 0755 bin/pathagar.sh $SNAPCRAFT_PART_INSTALL/usr/bin
+
+
 apps:
   pathagar:
-    command: |-
-      cd /app
-      python manage.py migrate
-      python manage.py runserver
-    environment:
-      DATABASE_URL: postgresql://pathagar:pathagar@localhost:5432/pathagar
+    command: pathagar.sh
     plugs:
       - network
       - network-bind
