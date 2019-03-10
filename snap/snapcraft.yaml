@@ -6,6 +6,7 @@ description: >-
   community over a local offline network.
 
 base: core18
+grade: devel
 confinement: devmode
 
 parts:
@@ -38,8 +39,12 @@ parts:
 
 
 apps:
-  pathagar:
+  start:
     command: pathagar.sh
     plugs:
       - network
       - network-bind
+  manage:
+    command: python $SNAP/app/manage.py
+    plugs:
+      - network
