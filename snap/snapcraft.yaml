@@ -18,9 +18,23 @@ parts:
     build-packages:
       - libxml2-dev
       - libxslt-dev
+    # TODO add a setup.py so that the python plugin can call python setup.py
+    # bdist_wheel and install pathagar to the python lib directory. Then we
+    # can use django-admin to run the application from anywhere without having to
+    # copy files around and making sure we're running manage.py from the right
+    # directory.
+    install: |-
+      mkdir $SNAPCRAFT_PART_INSTALL/app
+      cp -R . $SNAPCRAFT_PART_INSTALL/app/
 
 apps:
   pathagar:
     command: |-
+      cd /app
       python manage.py migrate
       python manage.py runserver
+    environment:
+      DATABASE_URL: postgresql://pathagar:pathagar@localhost:5432/pathagar
+    plugs:
+      - network
+      - network-bind

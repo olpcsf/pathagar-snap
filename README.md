@@ -18,9 +18,9 @@ machine.
 
 ### Snap
 
-Build the snap.
+Run all the stages to build the snap.
 
-    $ snapcraft --debug build
+    $ snapcraft --debug
 
 Install the snap locally. The name of the snap will depend on your git history.
 
