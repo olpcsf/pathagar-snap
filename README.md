@@ -3,6 +3,25 @@
 This is an Ubuntu Snap package for the Pathagar Book Server.
 
 
+## Usage
+
+Install the snap. _Note: the snap is not published to any store and is unsigned.
+`--dangerous` allows it to be installed. `--devmode` is needed before we work
+out the kinks._
+
+    $ sudo snap install --dangerous --devmode ./pathagar.snap
+
+Create a superuser.
+
+    $ snap run pathagar.manage createsuperuser
+
+Start pathagar.
+
+    $ snap run pathagar.start
+
+Open your web browser to [localhost:8000](https://localhost:8000/).
+
+
 ## Development
 
 
